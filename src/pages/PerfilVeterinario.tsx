@@ -120,7 +120,7 @@ export default function PerfilVeterinario() {
     if (!user) return;
 
     const db = getDatabase();
-
+/*
     // Cargar información del veterinario
     const cargarDatosVeterinario = async () => {
       try {
@@ -149,6 +149,46 @@ export default function PerfilVeterinario() {
         setLoading(false);
       }
     };
+*/
+// Cargar información del veterinario desde users/${uid}/perfil
+const cargarDatosVeterinario = async () => {
+  try {
+    logger.info("Cargando datos del veterinario desde users/perfil...");
+    const userPerfilRef = ref(db, `users/${user.uid}/perfil`);
+    const snapshot = await get(userPerfilRef);
+
+    if (snapshot.exists()) {
+      const perfilData = snapshot.val();
+      
+      // Mapear datos del perfil del usuario a la estructura de veterinario
+      setData({
+        nombre: perfilData.nombre || "Veterinario",
+        apellidos: perfilData.apellidos || "Apellido", 
+        telefono: perfilData.telefono || t('vet.notSpecified'),
+        // Campos específicos de veterinario con valores por defecto
+        especialidad: perfilData.especialidad || t('vet.generalMedicine'),
+        licencia: perfilData.licencia || t('vet.notSpecified')
+      });
+      
+      logger.info("Datos del veterinario cargados desde perfil de usuario");
+    } else {
+      // Perfil básico si no hay datos guardados
+      setData({
+        nombre: "Veterinario",
+        apellidos: "Apellido",
+        especialidad: t('vet.generalMedicine'),
+        telefono: t('vet.notSpecified'),
+        licencia: t('vet.notSpecified')
+      });
+      logger.warn("No se encontraron datos de perfil, se usó perfil por defecto");
+    }
+  } catch (err) {
+    logger.error("Error al cargar datos del veterinario", err);
+    setError(t('vet.loadError'));
+  } finally {
+    setLoading(false);
+  }
+};
 
     // Cargar datos del veterinario
     cargarDatosVeterinario();

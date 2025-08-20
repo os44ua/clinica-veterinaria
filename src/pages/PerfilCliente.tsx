@@ -19,7 +19,7 @@ import {
 import { 
  fetchCitasCliente, 
  addCita, 
- deleteCita, // Cambiar de updateEstadoCita a deleteCita
+ deleteCita, 
  clearCitaError
 } from '../redux/citaSlice';
 import logger from '../services/logging';

@@ -28,7 +28,7 @@ function App() {
       }
     >
       <ReduxProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.VITE_APP_BASE_URL || "/"}>
           <AuthProvider>
             <div className="min-h-screen bg-gray-50">
               {/* Barra de navegación - ahora dentro del Router */}

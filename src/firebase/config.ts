@@ -3,19 +3,16 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDpHe9FVlip8nFQefnnhY5a5W5lPzFloYM",
-  authDomain: "clinica-veterinaria-fe824.firebaseapp.com",
-  databaseURL: "https://clinica-veterinaria-fe824-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "clinica-veterinaria-fe824",
-  storageBucket: "clinica-veterinaria-fe824.firebasestorage.app",
-  messagingSenderId: "148228524919",
-  appId: "1:148228524919:web:5f475bb25e96f91b106f72",
-  measurementId: "G-C5GVX4WSFG"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
 export const auth = getAuth(app);
 export const db = getDatabase(app);
-
-
-

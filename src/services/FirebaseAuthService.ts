@@ -12,6 +12,9 @@ import { app } from '../firebase/config';
 
 const auth = getAuth(app);
 
+const raw = import.meta.env.VITE_ADMIN_EMAILS ?? "";
+const ADMIN_EMAILS = raw ? raw.split(",").map((s:string)=>s.trim().toLowerCase()).filter(Boolean) : [];
+
 export class FirebaseAuthService implements IAuthService {
   private databaseService: FirebaseDatabaseService;
   
@@ -39,10 +42,8 @@ export class FirebaseAuthService implements IAuthService {
     return auth.currentUser;
   }
   
- async getUserRoles(user: any): Promise<Role[]> {
-  // Para los usuarios admin por defecto
-  if (user.email === 'olga.slepova87@gmail.com' || 
-      user.email === 'admin@gmail.com') {
+async getUserRoles(user: any): Promise<Role[]> {
+  if (user?.email && ADMIN_EMAILS.includes(user.email.toLowerCase())) {
     return [Role.ADMIN];
   }
   
