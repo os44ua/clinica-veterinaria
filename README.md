@@ -13,6 +13,25 @@ La aplicación permite a los clientes registrarse, gestionar su perfil, añadir 
 Los veterinarios pueden confirmar o rechazar citas y consultar la información de los pacientes.  
 El administrador puede gestionar roles de usuario.
 
+## Capturas de pantalla
+
+### Panel de Administrador
+![Gestión de usuarios](./screenshots/admin-user-management.png)
+*Sistema de gestión de roles y usuarios*
+
+### Panel de Cliente
+![Mascotas y citas](./screenshots/client-pets-appointments.png)
+*Gestión de mascotas y programación de citas*
+
+![Perfil de cliente](./screenshots/client-profile-form.png)
+*Formulario de datos personales*
+
+### Panel de Veterinario
+![Dashboard veterinario](./screenshots/veterinarian-dashboard.png)
+*Lista de citas y gestión de pacientes*
+
+
+
 ## Funcionalidades principales
 
 - Registro y autenticación de usuarios con Firebase Authentication  
