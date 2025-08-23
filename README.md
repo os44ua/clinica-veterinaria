@@ -4,7 +4,7 @@
 
 English version below
 
-## Descripción (Español)
+## Descripción
 
 Este proyecto es una aplicación web para la gestión de una clínica veterinaria.  
 Fue desarrollado como parte de un proyecto académico en la asignatura *Desarrollo de Interfaces Ricas*.  
@@ -65,9 +65,30 @@ Puede acceder con estas cuentas de prueba:
     ```bash
     npm run build
 
+## Testing 
+
+El proyecto incluye pruebas unitarias para componentes y servicios críticos:
+
+- **Vitest** como framework de testing principal con entorno jsdom
+- **React Testing Library** para pruebas de componentes
+- **Configuración global** de mocks en setup.ts para i18n y logging
+- **Mocks inteligentes** con vi.unmock() para testear implementaciones reales
+- **Cobertura de pruebas** para formularios, servicios de logging y validaciones
+
+Ejecutar tests:
+```bash
+npm run test        # Ejecutar todos los tests
+npm run test:watch  # Ejecutar en modo watch
+```
+
+Los tests incluyen validación de renderizado, estados de carga, interacciones del usuario y funcionalidad de logging con diferentes niveles (info, error, warn, debug).
+
+---
+
+
 # Veterinary Clinic
 
-## Description (English)
+## Description 
 
 This project is a web application for managing a veterinary clinic.  
 It was developed as part of an academic project for the course *Development of Rich Interfaces*.  
@@ -126,3 +147,21 @@ You can log in with these demo accounts:
 5. Build for production:
     ```bash
     npm run build
+
+## Testing
+
+The project includes unit tests for critical components and services:
+
+- **Vitest** as the main testing framework with jsdom environment
+- **React Testing Library** for component testing
+- **Global setup** with mocks in setup.ts for i18n and logging
+- **Smart mocking** with vi.unmock() to test real implementations
+- **Test coverage** for forms, logging services and validations
+
+Run tests:
+```bash
+npm run test        # Run all tests
+npm run test:watch  # Run in watch mode
+```
+
+Tests include rendering validation, loading states, user interactions, and logging functionality with different levels (info, error, warn, debug).
