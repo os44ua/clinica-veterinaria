@@ -1,6 +1,10 @@
 # React + TypeScript + Vite + Firebase
 
 # Clínica Veterinaria
+[![Build](https://github.com/os44ua/clinica-veterinaria/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/os44ua/clinica-veterinaria/actions/workflows/gh-pages.yml)
+[![codecov](https://codecov.io/gh/os44ua/clinica-veterinaria/branch/main/graph/badge.svg)](https://codecov.io/gh/os44ua/clinica-veterinaria)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+[![Deploy](https://img.shields.io/badge/Demo-GitHub%20Pages-blue)](https://os44ua.github.io/clinica-veterinaria/)
 
 English version below
 
@@ -13,7 +17,7 @@ La aplicación permite a los clientes registrarse, gestionar su perfil, añadir 
 Los veterinarios pueden confirmar o rechazar citas y consultar la información de los pacientes.  
 El administrador puede gestionar roles de usuario.
 
-**Live Demo**: [https://os44ua.github.io/clinica-veterinaria/](https://os44ua.github.io/clinica-veterinaria/)
+
 
 ## Capturas de pantalla
 
