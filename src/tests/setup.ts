@@ -76,3 +76,28 @@ vi.mock('../services/logging', () => {
 
 // Mock global de assets (icono usado en varias páginas)
 vi.mock('../assets/dog.png', () => ({ default: 'mocked-dog-icon.png' }))
+
+// Evitar inicialización real de Firebase en tests/CI
+vi.mock('firebase/app', () => ({
+  initializeApp: vi.fn(() => ({ name: 'mock-app' })),
+  getApps: vi.fn(() => []),            // ← добавили
+}))
+
+vi.mock('firebase/auth', () => ({
+  getAuth: vi.fn(() => ({ currentUser: null })),
+}))
+
+// config.ts hace getDatabase(app))
+vi.mock('firebase/database', () => ({
+  getDatabase: vi.fn(() => ({ name: 'mock-db' })),
+  ref: vi.fn(() => ({})),
+  get: vi.fn(),
+  set: vi.fn(),
+  update: vi.fn(),
+  onValue: vi.fn(),
+}))
+
+// opcional
+vi.mock('firebase/analytics', () => ({
+  getAnalytics: vi.fn(() => ({})),
+}))
