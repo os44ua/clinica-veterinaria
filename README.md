@@ -13,6 +13,8 @@ La aplicación permite a los clientes registrarse, gestionar su perfil, añadir 
 Los veterinarios pueden confirmar o rechazar citas y consultar la información de los pacientes.  
 El administrador puede gestionar roles de usuario.
 
+**Live Demo**: [https://os44ua.github.io/clinica-veterinaria/](https://os44ua.github.io/clinica-veterinaria/)
+
 ## Capturas de pantalla
 
 ### Panel de Administrador
@@ -115,6 +117,8 @@ It was developed as part of an academic project for the course *Development of R
 The application allows clients to register, manage their profile, add pets, and request appointments.  
 Veterinarians can confirm or cancel appointments and check patient information.  
 The administrator can manage user roles.
+
+**Live Demo**: [https://os44ua.github.io/clinica-veterinaria/](https://os44ua.github.io/clinica-veterinaria/)
 
 ## Main features
 
