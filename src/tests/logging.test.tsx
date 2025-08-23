@@ -1,4 +1,12 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+
+/*
+ Test unitario del servicio de logging que verifica todos los niveles de log.
+ Usa vi.unmock() para obtener la implementación real del logger (evitando el mock global de setup.ts).
+ Mockea console methods para verificar que el logger real efectivamente los llama.
+ */
+
+vi.unmock('../services/logging');
 import logger from '../services/logging';
 
 // Mock console methods
