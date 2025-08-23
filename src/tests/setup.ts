@@ -1,20 +1,14 @@
-import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
-// Mock global de react-i18next
+// Mock global de i18n para unit tests
+// Devuelve traducciones básicas y, si falta, la clave.
+// Los tests pueden sobreescribir este mock con vi.mock en el propio archivo.
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {
-      // Traducciones completas basadas en es.json
-      const translations: Record<string, string> = {
-        // Client translations
-        'client.personalData': 'Mis Datos Personales',
-        'client.namePlaceholder': 'Tu nombre',
-        'client.surnamePlaceholder': 'Tus apellidos',
-        'client.addressPlaceholder': 'Tu dirección completa',
-        'client.dni': 'DNI',
-        
-        // Forms translations
+      const es: Record<string, string> = {
+        // Forms
         'forms.name': 'Nombre',
         'forms.surname': 'Apellidos',
         'forms.phone': 'Teléfono',
@@ -26,8 +20,15 @@ vi.mock('react-i18next', () => ({
         'forms.edit': 'Editar',
         'forms.delete': 'Eliminar',
         'forms.loading': 'Cargando...',
-        
-        // Pet translations
+
+        // Client
+        'client.personalData': 'Mis Datos Personales',
+        'client.namePlaceholder': 'Tu nombre',
+        'client.surnamePlaceholder': 'Tus apellidos',
+        'client.addressPlaceholder': 'Tu dirección completa',
+        'client.dni': 'DNI',
+
+        // Pet
         'pet.name': 'Nombre de la mascota',
         'pet.species': 'Especie',
         'pet.breed': 'Raza',
@@ -37,8 +38,8 @@ vi.mock('react-i18next', () => ({
         'pet.namePlaceholder': 'Nombre de tu mascota',
         'pet.breedPlaceholder': 'Raza de tu mascota',
         'pet.chipPlaceholder': 'Número de identificación del chip',
-        
-        // Appointment translations
+
+        // Appointment
         'appointment.date': 'Fecha',
         'appointment.time': 'Hora',
         'appointment.pet': 'Mascota',
@@ -48,26 +49,30 @@ vi.mock('react-i18next', () => ({
         'appointment.pending': 'Pendiente',
         'appointment.confirmed': 'Confirmada',
         'appointment.cancelled': 'Cancelada',
-        
-        // Error translations
-        'errors.somethingWrong': '¡Algo salió mal!',
-        'errors.tryAgain': 'Por favor, intenta de nuevo'
-      };
-      
-      return translations[key] || key;
-    }
-  }),
-  
-  // Mock adicional para Trans component si lo usas
-  Trans: ({ children }: { children: React.ReactNode }) => children
-}));
 
-// Mock del logger para todos los tests
-vi.mock('../services/logging', () => ({
-  default: {
-    info: vi.fn(),
-    error: vi.fn(),
-    warn: vi.fn(),
-    debug: vi.fn()
+        // Errors
+        'errors.somethingWrong': '¡Algo salió mal!',
+        'errors.tryAgain': 'Por favor, intenta de nuevo',
+      }
+      return es[key] ?? key
+    },
+  }),
+  // Componente Trans no-op
+  Trans: (props: { children: any }) => props.children,
+}))
+
+// Mock global del logger: misma API pública que el real
+vi.mock('../services/logging', () => {
+  return {
+    default: {
+      debug: vi.fn(),
+      info: vi.fn(),
+      warn: vi.fn(),
+      error: vi.fn<(message: string, error?: unknown) => void>(),
+      setLevel: vi.fn<(level: 'debug' | 'info' | 'warn' | 'error') => void>(),
+    },
   }
-}));
+})
+
+// Mock global de assets (icono usado en varias páginas)
+vi.mock('../assets/dog.png', () => ({ default: 'mocked-dog-icon.png' }))
